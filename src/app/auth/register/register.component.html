@@ -1,0 +1,45 @@
+<section class="container p-10">
+  <div class="img">
+    <img src="../../../assets/Group.png" alt="" />
+  </div>
+
+  <div class="login flex flex-col rounded-md">
+    <h3 class="text-2xl">Welcome to</h3>
+    <h1 class="text-4xl font-extrabold text-blue-700 pb-8">InstaChat</h1>
+
+    <form
+      [formGroup]="registerForm"
+      class="flex flex-col"
+      (submit)="onSubmit()"
+    >
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          placeholder="Enter Your Email Address"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input matInput formControlName="confirmPassword" />
+      </mat-form-field>
+      <button mat-flat-button>Submit</button>
+
+      <p class="text-center pt-2 text-sm">
+        Alredy have an account? <a class="text-blue-600 underline" href="/login"> Login</a>
+      </p>
+    </form>
+  </div>
+</section>
