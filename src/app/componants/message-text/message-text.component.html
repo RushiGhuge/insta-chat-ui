@@ -1,0 +1,20 @@
+<div
+  class="m-1 ml-5 mr-3 flex h-full"
+  [ngClass]="{
+    'justify-end': roomSelectedUser?._id !== conversation?.senderId
+  }"
+>
+  <p *ngIf="conversation" class="flex flex-col items-end">
+    <span class="bg-slate-200 p-1 pl-3 pr-3 rounded-xl text-lg">
+      {{ conversation.message }}
+    </span>
+    <span
+      class="text-xs pt-1"
+      [ngClass]="{
+        'self-start': roomSelectedUser?._id === conversation.senderId
+      }"
+    >
+      {{ conversation.createdAt | relativeTime }}
+    </span>
+  </p>
+</div>

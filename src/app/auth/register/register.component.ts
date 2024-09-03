@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,13 +14,17 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required, Validators.minLength(6)],
+      gender: [Validators.required],
     },
     {
       validator: this.passwordMatchValidator,
     }
   );
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public authservice: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -35,6 +40,15 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    console.log(this.registerForm.value);
+    try {
+      const { password, name, email, gender } = this.registerForm.value;
+      const subscription = this.authservice
+        .registerUser({ password, name, email, gender })
+        .subscribe((data) => {
+          console.log(data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

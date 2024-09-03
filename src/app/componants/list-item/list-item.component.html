@@ -1,0 +1,17 @@
+<section
+  class="flex gap-5 w-full items-center justify-between p-2 cursor-pointer hover:bg-slate-200"
+>
+  <div class="flex gap-3 items-center">
+    <div class="w-10 h-10 rounded-full relative">
+      <img [src]="user?.profilePic" alt="" />
+      <span *ngIf="isUserOnline" class="text-green-600 border-black text-5xl absolute bottom-2 left-7">•</span>
+    </div>
+    <div class="flex flex-col">
+      <p class="text-lg">{{ user?.name }}</p>
+      <span class="font-thin text-sm">Letest message</span>
+    </div>
+  </div>
+
+  <span class="">4:40 pm</span>
+</section>
+<hr />

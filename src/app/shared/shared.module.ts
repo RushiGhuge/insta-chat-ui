@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,9 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-
+import { HttpClientModule } from '@angular/common/http';
+import { MatRadioModule } from '@angular/material/radio';
+import { RelativeTimePipe } from '../relative-time.pipe';
 @NgModule({
-  declarations: [],
+  declarations: [RelativeTimePipe],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -20,6 +22,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
+    HttpClientModule,
+    MatRadioModule,
+    DatePipe,
   ],
   exports: [
     CommonModule,
@@ -31,6 +36,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
+    HttpClientModule,
+    MatRadioModule,
+    DatePipe,
+    RelativeTimePipe,
   ],
 })
 export class SharedModule {}
