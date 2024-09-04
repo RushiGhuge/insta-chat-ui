@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
 import { RelativeTimePipe } from '../relative-time.pipe';
+import { RouterLink } from '@angular/router';
 @NgModule({
   declarations: [RelativeTimePipe],
   imports: [
@@ -25,6 +26,7 @@ import { RelativeTimePipe } from '../relative-time.pipe';
     HttpClientModule,
     MatRadioModule,
     DatePipe,
+    RouterLink,
   ],
   exports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { RelativeTimePipe } from '../relative-time.pipe';
     MatRadioModule,
     DatePipe,
     RelativeTimePipe,
+    RouterLink,
   ],
 })
 export class SharedModule {}

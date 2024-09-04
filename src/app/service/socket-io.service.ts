@@ -4,8 +4,9 @@ import { BASE_URL } from '../constants/env.constants';
 import { select, Store } from '@ngrx/store';
 import { BasicUser } from '../constants/constant';
 import { selectUser } from '../store/user/user.select';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { setOnlineUsers } from '../store/user/user.action';
+import { addMessageToConversation } from '../store/conversation/conversation.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +37,18 @@ export class SocketIoService {
       }
     });
     this.socket.on('message', (message) => {
-      console.log(message);
+      // this.store
+      //   .select(selectCurrentUserConversation)
+      //   .pipe(take(1))
+      //   .subscribe((conversation) => {
+      //     console.log(conversation, message);
+
+      // if (conversation._id === message.content.conversationId) {
+      this.store.dispatch(
+        addMessageToConversation({ conversation: message.content })
+      );
+      // }
+      //       });
     });
   }
 
@@ -44,5 +56,10 @@ export class SocketIoService {
     if (this.socket) {
       this.socket.disconnect();
     }
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    this.socket?.off('message');
   }
 }

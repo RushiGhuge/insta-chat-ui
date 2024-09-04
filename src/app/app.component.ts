@@ -20,7 +20,6 @@ export class AppComponent {
     const token = getCookie('jwt');
     if(token) {
       let data = jwtDecode<any>(token ?? '');
-      console.log(data);
       this.store.dispatch(loadUser({ user: data }));
     }
   }

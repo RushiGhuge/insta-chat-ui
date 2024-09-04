@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Conversation, User } from '../../constants/constant';
+import { Message, User } from '../../constants/constant';
 
 @Component({
   selector: 'app-message-text',
@@ -7,10 +7,11 @@ import { Conversation, User } from '../../constants/constant';
   styleUrl: './message-text.component.scss',
 })
 export class MessageTextComponent {
-  @Input() conversation: Conversation | undefined;
+  @Input() message: Message | undefined;
   @Input() roomSelectedUser: User | undefined;
-
+  ourmessage = false;
 
   ngOnInit(): void {
+    this.ourmessage = this.roomSelectedUser?._id !== this.message?.senderId;
   }
 }

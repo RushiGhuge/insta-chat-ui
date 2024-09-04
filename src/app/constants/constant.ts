@@ -34,7 +34,18 @@ export interface BasicUserProfile {
   onlineUsers: string[];
 }
 
+
 export interface Conversation {
+  createdAt: string;
+  participants: string[];
+  messages: Message[];
+  _id: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export interface Message {
+  conversationId: string; 
   createdAt: string;
   message: string;
   receiverId: string;

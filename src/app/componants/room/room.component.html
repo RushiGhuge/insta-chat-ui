@@ -34,10 +34,10 @@
 
   <!-- Todo Chatting section -->
   <section class="h-full overflow-y-auto flex flex-col-reverse pt-2">
-    <div class="flex flex-col justify-end w-full">
+    <div *ngIf="conversation?.messages?.length" class="flex flex-col justify-end w-full">
       <app-message-text
-        *ngFor="let conversation of conversations"
-        [conversation]="conversation"
+        *ngFor="let message of conversation?.messages"
+        [message]="message"
         [roomSelectedUser]="roomSelectedUser"
       ></app-message-text>
     </div>
@@ -65,7 +65,9 @@
           mat-icon-button
           aria-label="Example icon button with a vertical three dot icon"
         >
-          <mat-icon class="text-slate-600">send</mat-icon>
+          <!-- <mat-icon class="text-slate-600">send</mat-icon> -->
+          <i class="material-icons">send</i>
+          <!-- <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon> -->
         </button>
       </form>
     </div>

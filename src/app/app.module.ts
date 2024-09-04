@@ -12,18 +12,23 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { userReducer } from './store/user/user.reducer';
 import { AppService } from './service/app.service';
-import { basicStoreReducer } from './store/basic_store/basic.reducers';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ConversationReducer } from './store/conversation/conversation.reducers';
+import { ConversationEffects } from './store/conversation/conversation.effects';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     SharedModule,
     DashboardModule,
-    StoreModule.forRoot({ user: userReducer }),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({
+      user: userReducer,
+      conversations: ConversationReducer,
+    }),
+    EffectsModule.forRoot([ConversationEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [provideAnimationsAsync(), AppService, SocketIoService],

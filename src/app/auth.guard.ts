@@ -1,6 +1,4 @@
 import { CanActivateFn } from '@angular/router';
-import { jwtDecode, JwtPayload } from 'jwt-decode';
-import { loadUser } from './store/user/user.action';
 
 
 

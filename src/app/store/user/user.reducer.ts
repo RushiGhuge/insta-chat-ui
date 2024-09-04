@@ -1,6 +1,11 @@
 // src/app/state/user.reducer.ts
 import { createReducer, on } from '@ngrx/store';
-import { loadUser, setOnlineUsers, updateUser } from './user.action';
+import {
+  loadUser,
+  refreshUser,
+  setOnlineUsers,
+  updateUser,
+} from './user.action';
 import { BasicUserProfile } from '../../constants/constant';
 
 export const initialUserState: BasicUserProfile = {
@@ -25,5 +30,9 @@ export const userReducer = createReducer(
   on(updateUser, (state, { user }) => ({ ...state, ...user })),
   on(setOnlineUsers, (state, action) => {
     return { ...state, onlineUsers: [...action.users] };
+  }),
+  on(refreshUser, (state) => {
+    console.log(state);
+    return { ...state };
   })
 );

@@ -16,3 +16,7 @@ export const setOnlineUsers = createAction(
   "[Users] online User_id's list",
   props<{ users: string[] }>()
 );
+
+export const refreshUser = createAction(
+  "[Users] Refresh The User"
+);

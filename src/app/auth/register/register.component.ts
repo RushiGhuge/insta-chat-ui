@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -8,6 +10,8 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
+  subscribtion: Subscription[] = [];
+
   registerForm = this.formBuilder.group(
     {
       name: ['', Validators.required],
@@ -23,7 +27,8 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    public authservice: AuthService
+    public authservice: AuthService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -45,10 +50,19 @@ export class RegisterComponent {
       const subscription = this.authservice
         .registerUser({ password, name, email, gender })
         .subscribe((data) => {
-          console.log(data);
+          this.router.navigate(['/dashboard']);
         });
+      this.subscribtion.push(subscription);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.subscribtion.forEach((sub) => {
+      sub.unsubscribe();
+    });
   }
 }
