@@ -10,12 +10,10 @@ export class AuthService {
   constructor(public http: HttpClient) {}
 
   registerUser(user: any): Observable<any> {
-    return this.http.post(`${BASE_URL}/auth/register`, user, {
-      withCredentials: true,
-    });
+    return this.http.post(`${BASE_URL}/auth/register`, user);
   }
 
-  login(email: string, password: string): Observable<any>{
+  login(email: string, password: string): Observable<any> {
     return this.http.post(
       `${BASE_URL}/auth/login`,
       {

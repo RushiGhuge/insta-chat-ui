@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
+    email: ['rushi@gmail.com', [Validators.required, Validators.email]],
+    password: ['Test@123', [Validators.required]],
   });
 
   constructor(
@@ -28,7 +28,8 @@ export class LoginComponent {
       const subscription = this.authService
         .login(email as string, password as string)
         .subscribe((data) => {
-          this.router.navigate(['/dashboard']);
+          console.log(data);
+          this.router.navigate(['../dashboard']);
         });
     } catch (error) {
       console.log(error);

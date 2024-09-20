@@ -50,6 +50,8 @@ export class RegisterComponent {
       const subscription = this.authservice
         .registerUser({ password, name, email, gender })
         .subscribe((data) => {
+          console.log(data);
+          
           this.router.navigate(['/dashboard']);
         });
       this.subscribtion.push(subscription);

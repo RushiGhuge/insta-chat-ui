@@ -5,13 +5,13 @@
   }"
 >
   <p *ngIf="message" class="flex flex-col items-end">
-    <span class="bg-slate-200 p-1 pl-3 pr-3 rounded-xl text-lg">
+    <span class="bg-gray-200 p-1 pl-3 pr-3 rounded-full text-lg">
       {{ message.message }}
     </span>
     <span
-      class="text-xs pt-1"
+      class="text-xs pt-0.5 font-extralight"
       [ngClass]="{
-        'self-start': !ourmessage
+        'self-start pl-2': !ourmessage
       }"
     >
       {{ message.createdAt | relativeTime }}

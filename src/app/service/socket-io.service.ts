@@ -26,7 +26,8 @@ export class SocketIoService {
   }
 
   setupSocketConnection() {
-    this.socket = socketIo.io(BASE_URL, {
+    this.socket = socketIo.io('https://chat-backend-ogoo.onrender.com', {
+      transports: ['websocket', 'polling'],
       query: {
         userId: this.user?._id,
       },

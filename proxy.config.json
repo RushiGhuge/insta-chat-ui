@@ -1,0 +1,7 @@
+{
+  "/**": {
+    "target": "https://insta-chat-six.vercel.app",
+    "secure": true,
+    "changeOrigin": true
+  }
+}
