@@ -29,6 +29,7 @@ export class LoginComponent {
         .login(email as string, password as string)
         .subscribe((data) => {
           console.log(data);
+          localStorage.setItem('authToken', data.token);
           this.router.navigate(['../dashboard']);
         });
     } catch (error) {

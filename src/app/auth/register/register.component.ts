@@ -51,7 +51,7 @@ export class RegisterComponent {
         .registerUser({ password, name, email, gender })
         .subscribe((data) => {
           console.log(data);
-          
+          localStorage.setItem('authToken', data.token);
           this.router.navigate(['/dashboard']);
         });
       this.subscribtion.push(subscription);

@@ -17,7 +17,7 @@ export class AppComponent {
     private socketService: SocketIoService,
     private store: Store<any>
   ) {
-    const token = getCookie('jwt');
+    const token = localStorage.getItem('authToken')
     if(token) {
       let data = jwtDecode<any>(token ?? '');
       this.store.dispatch(loadUser({ user: data }));

@@ -14,23 +14,23 @@ export class DashboardComponent {
   users: User[] = [];
   roomSelectedUser: User | undefined;
   currentUser: User | undefined;
-  subscribtion: Subscription[] = [];
+  subscription: Subscription[] = [];
 
   constructor(public userService: UserService, public store: Store<any>) {}
 
   ngOnInit(): void {
     this.fetchUserDetails();
-    const subscribtion = this.store
+    const subscription = this.store
       .pipe(select(selectUser))
       .subscribe((user) => (this.currentUser = user));
-    this.subscribtion.push(subscribtion);
+    this.subscription.push(subscription);
   }
 
   fetchUserDetails = () => {
     const subscribtion = this.userService
       .getAllUsers()
       .subscribe((users: User[]) => (this.users = users));
-    this.subscribtion.push(subscribtion);
+    this.subscription.push(subscribtion);
   };
 
   selectUser(user: User): void {
@@ -40,7 +40,7 @@ export class DashboardComponent {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.subscribtion.forEach((sub) => {
+    this.subscription.forEach((sub) => {
       sub.unsubscribe();
     });
   }

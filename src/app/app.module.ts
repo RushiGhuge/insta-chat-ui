@@ -15,6 +15,8 @@ import { AppService } from './service/app.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ConversationReducer } from './store/conversation/conversation.reducers';
 import { ConversationEffects } from './store/conversation/conversation.effects';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -31,7 +33,16 @@ import { ConversationEffects } from './store/conversation/conversation.effects';
     EffectsModule.forRoot([ConversationEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
-  providers: [provideAnimationsAsync(), AppService, SocketIoService],
+  providers: [
+    provideAnimationsAsync(),
+    AppService,
+    SocketIoService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
