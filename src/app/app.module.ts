@@ -17,7 +17,6 @@ import { ConversationReducer } from './store/conversation/conversation.reducers'
 import { ConversationEffects } from './store/conversation/conversation.effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
-import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -27,7 +26,6 @@ import { NotifierModule } from 'angular-notifier';
     AuthModule,
     SharedModule,
     DashboardModule,
-    NotifierModule,
     StoreModule.forRoot({
       user: userReducer,
       conversations: ConversationReducer,

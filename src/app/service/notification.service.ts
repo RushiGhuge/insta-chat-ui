@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
+// import { NotifierService } from 'angular-notifier';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
-  constructor(private notifier: NotifierService) {}
+  // constructor(private notifier: NotifierService) {}
 
   playReceivesNotification() {
     const audio = new Audio();
@@ -20,10 +20,10 @@ export class NotificationService {
   ): void {
     console.log('yep');
     
-    this.notifier.notify(type, message);
+    // this.notifier.notify(type, message);
   }
 
   hideAllNotifications(): void {
-    this.notifier.hideAll();
+    // this.notifier.hideAll();
   }
 }

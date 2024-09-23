@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production --base-href \"https://RushiGhuge.github.io/insta-chat-ui/\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -24,7 +24,6 @@
     "@ngrx/effects": "^17.2.0",
     "@ngrx/store": "^17.2.0",
     "@ngrx/store-devtools": "^17.2.0",
-    "angular-notifier": "^14.0.0",
     "autoprefixer": "^10.4.20",
     "jwt-decode": "^4.0.0",
     "postcss": "^8.4.42",
@@ -36,7 +35,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.2.3",
-    "@angular/cli": "^17.2.3",
+    "@angular/cli": "^17.3.9",
     "@angular/compiler-cli": "^17.2.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
