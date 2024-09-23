@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { SocketIoService } from './service/socket-io.service';
 import { Store } from '@ngrx/store';
-import { getCookie } from './auth.guard';
 import { loadUser } from './store/user/user.action';
 import { jwtDecode } from 'jwt-decode';
 
@@ -18,8 +17,10 @@ export class AppComponent {
     private store: Store<any>
   ) {
     const token = localStorage.getItem('authToken')
+    
     if(token) {
       let data = jwtDecode<any>(token ?? '');
+      console.log(data);
       this.store.dispatch(loadUser({ user: data }));
     }
   }

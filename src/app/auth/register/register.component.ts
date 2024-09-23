@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NotificationService } from '../../service/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class RegisterComponent {
   subscribtion: Subscription[] = [];
-
+  isLoader = false;
   registerForm = this.formBuilder.group(
     {
       name: ['', Validators.required],
@@ -28,7 +29,8 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     public authservice: AuthService,
-    public router: Router
+    public router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -47,13 +49,22 @@ export class RegisterComponent {
   onSubmit() {
     try {
       const { password, name, email, gender } = this.registerForm.value;
+      this.isLoader = true;
+      localStorage.removeItem('authToken');
       const subscription = this.authservice
         .registerUser({ password, name, email, gender })
-        .subscribe((data) => {
-          console.log(data);
-          localStorage.setItem('authToken', data.token);
-          this.router.navigate(['/dashboard']);
-        });
+        .subscribe(
+          (data) => {
+
+            localStorage.setItem('authToken', data.token);
+            this.router.navigate(['/dashboard']);
+          },
+          (e) => {
+            this.isLoader = false;
+            this.notificationService.hideAllNotifications();
+            this.notificationService.showNotification('error', e.error.message);
+          }
+        );
       this.subscribtion.push(subscription);
     } catch (error) {
       console.log(error);

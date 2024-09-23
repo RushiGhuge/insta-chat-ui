@@ -1,6 +1,6 @@
 <main class="room">
-  <section class="p-2 flex justify-between items-center border-b-2 pb-2">
-    <div class="flex items-center gap-3">
+  <section class="p-2 flex justify-between items-center pb-2 room-header">
+    <div class="flex items-center gap-3 room-header">
       <div class="w-10 h-10 rounded-full relative">
         <img [src]="roomSelectedUser?.profilePic" alt="" />
         <span
@@ -16,25 +16,24 @@
         >
       </div>
     </div>
-    <div>
-      <button
-        mat-icon-button
-        aria-label="Example icon button with a vertical three dot icon"
-      >
-        <mat-icon class="text-slate-600">call</mat-icon>
+    <div class="flex gap-2">
+      <button mat-icon-button class="text-slate-600">
+        <mat-icon> search </mat-icon>
       </button>
-      <button
-        mat-icon-button
-        aria-label="Example icon button with a vertical three dot icon"
-      >
-        <mat-icon class="text-slate-600">info</mat-icon>
+      <button mat-icon-button class="text-slate-600">
+        <mat-icon> more_vert </mat-icon>
       </button>
     </div>
   </section>
 
   <!-- Todo Chatting section -->
-  <section class="h-full overflow-y-auto flex flex-col-reverse pt-2">
-    <div *ngIf="conversation?.messages?.length" class="flex flex-col justify-end w-full">
+  <section
+    class="h-full overflow-y-auto flex flex-col-reverse pt-2 pl-10 pr-10 pb-10"
+  >
+    <div
+      *ngIf="conversation?.messages?.length"
+      class="flex flex-col justify-end w-full"
+    >
       <app-message-text
         *ngFor="let message of conversation?.messages"
         [message]="message"
@@ -43,18 +42,20 @@
     </div>
   </section>
 
-  <section class="p-2">
-    <div class="w-full flex gap-2 border-2 rounded-lg items-center">
-      <button
-        mat-icon-button
-        aria-label="Example icon button with a vertical three dot icon"
-      >
-        <mat-icon class="text-slate-600">upload</mat-icon>
-      </button>
+  <section class="p-2 bottom_header">
+    <div class="w-full gap-2 flex rounded-lg items-center">
+      <div class="flex">
+        <button mat-icon-button class="text-slate-600">
+          <mat-icon> insert_emoticon </mat-icon>
+        </button>
+        <button mat-icon-button class="text-slate-600">
+          <mat-icon> add </mat-icon>
+        </button>
+      </div>
 
       <form class="flex w-full" (submit)="sendMessage()">
         <input
-          class="w-full outline-none"
+          class="w-full pl-4 outline-none input rounded-lg"
           placeholder="Type your message here...."
           type="text"
           [(ngModel)]="message"

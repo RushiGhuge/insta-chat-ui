@@ -4,6 +4,8 @@ import { User } from '../../constants/constant';
 import { select, Store } from '@ngrx/store';
 import { selectUser } from '../../store/user/user.select';
 import { Subscription } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { loadUser } from '../../store/user/user.action';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +18,15 @@ export class DashboardComponent {
   currentUser: User | undefined;
   subscription: Subscription[] = [];
 
-  constructor(public userService: UserService, public store: Store<any>) {}
+  constructor(public userService: UserService, public store: Store<any>) {
+    const token = localStorage.getItem('authToken');
+
+    if (token) {
+      let data = jwtDecode<any>(token ?? '');
+      console.log(data);
+      this.store.dispatch(loadUser({ user: data }));
+    }
+  }
 
   ngOnInit(): void {
     this.fetchUserDetails();
@@ -27,10 +37,10 @@ export class DashboardComponent {
   }
 
   fetchUserDetails = () => {
-    const subscribtion = this.userService
+    const subscription = this.userService
       .getAllUsers()
       .subscribe((users: User[]) => (this.users = users));
-    this.subscription.push(subscribtion);
+    this.subscription.push(subscription);
   };
 
   selectUser(user: User): void {

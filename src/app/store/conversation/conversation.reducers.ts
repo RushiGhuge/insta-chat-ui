@@ -17,8 +17,6 @@ export const initialUserState: Conversation = {
 export const ConversationReducer = createReducer(
   initialUserState,
   on(loadConversation, (state, { conversation }) => {
-    console.log(conversation);
-
     if (!conversation) {
       return initialUserState;
     }

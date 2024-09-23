@@ -14,6 +14,8 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #0c1317;
+  color: #e9edef;
 }
 
 html, body { height: 100%; }
@@ -21,4 +23,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .m-0 {
   margin: 0 !important;
+}
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 6px; /* Adjust width as needed */
+}
+
+/* Track of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f100; /* Color of the track */
+}
+
+/* Handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #3b4146; /* Color of the scrollbar handle */
+  border-radius: 1px; /* Rounded corners */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3b4146; /* Color of the handle on hover */
 }

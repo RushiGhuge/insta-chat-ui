@@ -7,7 +7,7 @@ import { authGuard } from './auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'register', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'register',
     component: RegisterComponent,
@@ -19,6 +19,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [authGuard],
   },
   { path: '**', component: NotFoundComponent },
 ];

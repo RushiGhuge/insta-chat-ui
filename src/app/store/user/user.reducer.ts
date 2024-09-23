@@ -32,7 +32,6 @@ export const userReducer = createReducer(
     return { ...state, onlineUsers: [...action.users] };
   }),
   on(refreshUser, (state) => {
-    console.log(state);
     return { ...state };
   })
 );

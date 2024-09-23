@@ -1,20 +1,24 @@
 <div
-  class="m-1 ml-5 mr-3 flex h-full"
+  class="flex h-full"
   [ngClass]="{
     'justify-end': ourmessage
   }"
 >
-  <p *ngIf="message" class="flex flex-col items-end">
-    <span class="bg-gray-200 p-1 pl-3 pr-3 rounded-full text-lg">
-      {{ message.message }}
-    </span>
-    <span
-      class="text-xs pt-0.5 font-extralight"
-      [ngClass]="{
-        'self-start pl-2': !ourmessage
-      }"
-    >
-      {{ message.createdAt | relativeTime }}
-    </span>
-  </p>
+  <div *ngIf="message" class="flex flex-col items-end message">
+    @if(ourmessage){
+    <div class="flex send-message p-1 pl-3 pr-3 rounded-md text-base gap-3">
+      <span> {{ message.message }} </span>
+      <sub class="flex text-small text-gray-300 self-end pb-2">
+        {{ message.createdAt | date : "h:mm a" }}</sub
+      >
+    </div>
+    } @else {
+    <p class="flex receive-message p-1 pl-3 pr-3 rounded-sm text-base gap-3">
+      <span> {{ message.message }} </span>
+      <sub class="text-small text-gray-300 self-end pb-2">
+        {{ message.createdAt | date : "h:mm a" }}</sub
+      >
+    </p>
+    }
+  </div>
 </div>

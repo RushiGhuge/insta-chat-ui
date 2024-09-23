@@ -1,28 +1,45 @@
-<main class="h-full w-full overflow-hidden flex">
-
+<main class="h-screen overflow-hidden flex p-5">
   <!-- Profile Sidebar/Nav-->
-  <section class="p-2 flex flex-col gap-4 justify-center border-r-2">
-    <h1 class="text-3xl pt-2 m-0">😎</h1>
-    <div class="w-10 h-10 rounded-full">
+  <section
+    class="p-2 w-20 flex flex-col gap-4 justify-between items-center sidenav"
+  >
+    <div class="w-12 h-10 rounded-full">
       <img [src]="currentUser?.profilePic" alt="" />
     </div>
-    <div class="flex flex-col gap-2 h-full"></div>
+    <div class="flex flex-col gap-2">
+      <button mat-icon-button class="text-slate-600"><mat-icon> settings </mat-icon></button>
+      <button mat-icon-button class="text-slate-600"><mat-icon> more_vert </mat-icon></button>
+    </div>
   </section>
 
-
   <!--  Message Section side bar -->
-  <section class="w-3/6 border-r-2">
+  <section class="w-2/5 max-lg:w-full chat-item-section overflow-hidden">
     <div class="list-container w-full h-lvh">
       <!--  Message Selection of User section-->
-      <h1 class="text-4xl pl-4 pt-2 m-0">Messages</h1>
-      <div class="border-b-2 pb-2 p-3">
+      <div class="flex justify-between items-center p-2">
+        <h1 class="text-4xl pl-4 pt-2 m-0 text-white font-extrabold">Chats</h1>
+        <div class="flex">
+          <button mat-icon-button class="text-slate-600"><mat-icon> add_comment </mat-icon></button>
+          <button mat-icon-button class="text-slate-600"><mat-icon> add </mat-icon></button>
+        </div>
+      </div>
+      <div class="pb-2 p-3">
         <input
-          class="p-3 w-full rounded-full bg-gray-100"
+          class="p-2 w-full rounded-md search-input outline-none"
           type="text"
-          placeholder="Search"
+          placeholder="    Search"
         />
       </div>
-      <div class="flex flex-col h-full overflow-y-auto">
+      <div class="flex items-center gap-4 p-2 pl-5">
+        <button class="p-1 bg-green-900 text-green-300 rounded-md">All</button>
+        <button class="p-1 bg-slate-700 rounded-md text-slate-300">
+          Unread
+        </button>
+        <button class="p-1 bg-slate-700 rounded-md text-slate-300">
+          Groups
+        </button>
+      </div>
+      <div class="flex flex-col h-full overflow-y-auto pb-52">
         <app-list-item
           *ngFor="let user of users"
           [user]="user"
@@ -32,15 +49,16 @@
     </div>
   </section>
 
-
   <!-- Chat/Room section -->
   <section *ngIf="roomSelectedUser" class="room-container bg-slate-0 w-full">
     <app-room [roomSelectedUser]="roomSelectedUser"></app-room>
   </section>
 
-
   <!-- Fallback UI -->
-  <section *ngIf="!roomSelectedUser" class="room-container bg-slate-0 w-full flex items-center justify-center text-3xl font-medium ">
+  <section
+    *ngIf="!roomSelectedUser"
+    class="room-container bg-slate-0 w-full flex items-center justify-center text-3xl font-medium"
+  >
     <h1>
       Welcome
       {{

@@ -24,6 +24,7 @@
     "@ngrx/effects": "^17.2.0",
     "@ngrx/store": "^17.2.0",
     "@ngrx/store-devtools": "^17.2.0",
+    "angular-notifier": "^14.0.0",
     "autoprefixer": "^10.4.20",
     "jwt-decode": "^4.0.0",
     "postcss": "^8.4.42",

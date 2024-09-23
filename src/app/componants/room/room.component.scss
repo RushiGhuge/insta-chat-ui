@@ -1,5 +1,17 @@
 .room{
-      height: 100vh;
+      height: 100%;
       display: grid;
       grid-template-rows: auto 1fr auto;
+}
+
+.room-header{
+      background: #202c33;
+}
+
+.bottom_header{
+      background: #202c33;
+}
+
+.input{
+      background: #2a3942;
 }

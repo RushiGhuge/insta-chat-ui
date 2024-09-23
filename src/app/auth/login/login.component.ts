@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../service/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  isLoader = false;
   loginForm = this.formBuilder.group({
     email: ['rushi@gmail.com', [Validators.required, Validators.email]],
     password: ['Test@123', [Validators.required]],
@@ -17,23 +19,31 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    try {
-      const { password, email } = this.loginForm.value;
-      const subscription = this.authService
-        .login(email as string, password as string)
-        .subscribe((data) => {
-          console.log(data);
+    const { password, email } = this.loginForm.value;
+    if (!email || !password) return;
+    localStorage.removeItem('authToken');
+    this.isLoader = true;
+    const subscription = this.authService
+      .login(email as string, password as string)
+      .subscribe(
+        (data) => {
           localStorage.setItem('authToken', data.token);
           this.router.navigate(['../dashboard']);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+          this.isLoader = false;
+        },
+        (e) => {
+          this.isLoader = false;
+          console.log(e.error.message);
+          this.notificationService.hideAllNotifications();
+          this.notificationService.showNotification('error', e.error.message);
+        }
+      );
   }
 }
