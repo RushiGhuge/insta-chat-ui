@@ -34,10 +34,14 @@ export class SocketIoService {
 
   setupSocketConnection() {
     this.socket = socketIo.io(CHAT_BACKEND_URL, {
-      transports: ['websocket', 'polling'],
+      transports: ['websocket'],
       query: {
         userId: this.user?._id,
       },
+      reconnectionAttempts: 5, // Number of reconnection attempts
+      reconnectionDelay: 1000, // Delay between reconnections
+      reconnectionDelayMax: 5000, // Maximum delay between reconnections
+      upgrade: false,
     });
     this.socket.on('getOnlineUsers', (users) => {
       if (users) {
