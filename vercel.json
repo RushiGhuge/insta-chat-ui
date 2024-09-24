@@ -2,8 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/insta-chat-ui/browser/**/*",
-      "use": "@vercel/static"
+      "src": "dist/insta-chat-ui/**/*",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/insta-chat-ui"
+      }
     }
   ],
   "routes": [
