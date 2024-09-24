@@ -20,6 +20,8 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
+    localStorage.clear();
+    this.socketService.disconnect(); // disconnect the socket io connection
     return this.http.post(`${BASE_URL}/auth/login`, {
       email,
       password,
