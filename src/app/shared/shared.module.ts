@@ -12,6 +12,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { RelativeTimePipe } from '../relative-time.pipe';
 import { RouterLink } from '@angular/router';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatMenuModule} from '@angular/material/menu';
+
 @NgModule({
   declarations: [RelativeTimePipe],
   imports: [
@@ -28,7 +30,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatRadioModule,
     DatePipe,
     RouterLink,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule,
   ],
   exports: [
     CommonModule,

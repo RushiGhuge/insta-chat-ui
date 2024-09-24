@@ -17,9 +17,7 @@ export class NotificationService {
   showNotification(
     type: 'success' | 'error' | 'warning' | 'info',
     message: string
-  ): void {
-    console.log('yep');
-    
+  ): void {    
     // this.notifier.notify(type, message);
   }
 

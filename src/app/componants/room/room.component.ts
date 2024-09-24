@@ -85,8 +85,6 @@ export class RoomComponent implements OnInit {
       _id: '',
     };
     this.store.dispatch(addMessageToConversation({ conversation: data }));
-    console.log(this.roomSelectedUser);
-    
     if (this.roomSelectedUser){
       this.roomService.sendMessage(this.roomSelectedUser._id, this.message).subscribe();
       this.message = '';

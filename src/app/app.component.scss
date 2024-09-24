@@ -1,3 +1,14 @@
 .full {
   width: 100%;
 }
+
+::ng-deep .custom-snackbar {
+  font-weight: bold;
+  font-size: 16px;  // Optional: Adjust font size
+}
+
+
+::ng-deep .mat-snack-bar-container {
+  font-weight: bold;  // Makes the snackbar text bold
+  font-size: 30px;    // Adjust font size if needed
+}

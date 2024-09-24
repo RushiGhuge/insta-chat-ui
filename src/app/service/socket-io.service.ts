@@ -9,6 +9,7 @@ import { setOnlineUsers } from '../store/user/user.action';
 import { addMessageToConversation } from '../store/conversation/conversation.actions';
 import { selectCurrentUserConversation } from '../store/conversation/conversation.selecters';
 import { NotificationService } from './notification.service';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,11 @@ export class SocketIoService {
   socket: socketIo.Socket | undefined;
   user: BasicUser | undefined;
   subscriptions: Subscription[] = [];
-  constructor(private store: Store<any>, public noti: NotificationService) {
+  constructor(
+    private store: Store<any>,
+    public noti: NotificationService,
+    private snackbarService: SnackbarService
+  ) {
     const subscription = this.store
       .pipe(select(selectUser))
       .subscribe((user) => {
@@ -36,11 +41,11 @@ export class SocketIoService {
     });
     this.socket.on('getOnlineUsers', (users) => {
       if (users) {
+        console.log(users);
         this.store.dispatch(setOnlineUsers({ users: users }));
       }
     });
     this.socket.on('chatMessage', (message) => {
-      // console.log(message);
       this.store
         .select(selectCurrentUserConversation)
         .pipe(take(1))
@@ -50,6 +55,13 @@ export class SocketIoService {
               addMessageToConversation({ conversation: message.content })
             );
             this.noti.playReceivesNotification();
+          } else {
+            this.noti.playReceivesNotification();
+            this.snackbarService.show(
+              `${message.content.senderName ?? 'New Message'} : ${
+                message.content.message
+              }`
+            );
           }
         });
     });
@@ -62,7 +74,7 @@ export class SocketIoService {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
+    this.disconnect();
     this.socket?.off('message');
   }
 }

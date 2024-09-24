@@ -7,8 +7,17 @@
       <img [src]="currentUser?.profilePic" alt="" />
     </div>
     <div class="flex flex-col gap-2">
-      <button mat-icon-button class="text-slate-600"><mat-icon> settings </mat-icon></button>
-      <button mat-icon-button class="text-slate-600"><mat-icon> more_vert </mat-icon></button>
+      <button mat-icon-button class="text-slate-600">
+        <mat-icon> settings </mat-icon>
+      </button>
+      <button mat-icon-button class="text-slate-600" [matMenuTriggerFor]="menu">
+        <mat-icon> more_vert </mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logOut()">Log Out</button>
+        <!-- <button mat-menu-item>Item 2</button> -->
+      </mat-menu>
     </div>
   </section>
 
@@ -19,8 +28,12 @@
       <div class="flex justify-between items-center p-2">
         <h1 class="text-4xl pl-4 pt-2 m-0 text-white font-extrabold">Chats</h1>
         <div class="flex">
-          <button mat-icon-button class="text-slate-600"><mat-icon> add_comment </mat-icon></button>
-          <button mat-icon-button class="text-slate-600"><mat-icon> add </mat-icon></button>
+          <button mat-icon-button class="text-slate-600">
+            <mat-icon> add_comment </mat-icon>
+          </button>
+          <button mat-icon-button class="text-slate-600">
+            <mat-icon> add </mat-icon>
+          </button>
         </div>
       </div>
       <div class="pb-2 p-3">

@@ -20,16 +20,12 @@ export class AppComponent {
     
     if(token) {
       let data = jwtDecode<any>(token ?? '');
-      console.log(data);
       this.store.dispatch(loadUser({ user: data }));
     }
   }
 
-  ngOnInit() {
-    this.socketService.setupSocketConnection();
-  }
+  // ngOnInit() {
+  //   this.socketService.setupSocketConnection();
+  // }
 
-  ngOnDestroy() {
-    this.socketService.disconnect();
-  }
 }

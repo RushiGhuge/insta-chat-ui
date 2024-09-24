@@ -17,7 +17,6 @@ export class ListItemComponent {
   subscription: Subscription[] = [];
 
   ngOnInit(): void {
-    console.log(this.user);
     const Subscription$ = this.store
       .select(selectOnlineUsersList)
       .subscribe((list) => {
