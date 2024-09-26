@@ -12,6 +12,6 @@ export class MessageTextComponent {
   ourmessage = false;
 
   ngOnInit(): void {
-    this.ourmessage = this.roomSelectedUser?._id !== this.message?.senderId;
+    this.ourmessage = this.roomSelectedUser?._id !== this.message?.senderId; 
   }
 }

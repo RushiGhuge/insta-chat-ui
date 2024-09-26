@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-   "build": "ng build",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng b --output-path docs --base-href /insta-chat-ui/^C"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +21,7 @@
     "@angular/platform-browser": "^17.2.0",
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
+    "@ctrl/ngx-emoji-mart": "^9.2.0",
     "@nestjs/websockets": "^10.4.1",
     "@ngrx/effects": "^17.2.0",
     "@ngrx/store": "^17.2.0",

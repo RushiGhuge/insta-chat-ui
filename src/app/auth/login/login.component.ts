@@ -12,8 +12,8 @@ import { NotificationService } from '../../service/notification.service';
 export class LoginComponent {
   isLoader = false;
   loginForm = this.formBuilder.group({
-    email: ['rushi@gmail.com', [Validators.required, Validators.email]],
-    password: ['Test@123', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
   });
 
   constructor(

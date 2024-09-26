@@ -50,6 +50,8 @@ export class SocketIoService {
       }
     });
     this.socket.on('chatMessage', (message) => {
+      console.log(message);
+      
       this.store
         .select(selectCurrentUserConversation)
         .pipe(take(1))

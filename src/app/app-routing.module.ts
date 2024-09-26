@@ -20,7 +20,7 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [authGuard],
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
 

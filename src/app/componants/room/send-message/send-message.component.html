@@ -1,0 +1,42 @@
+<div class="w-full gap-2 flex rounded-lg items-center">
+  <div class="flex">
+    <!-- Emoji -->
+    <div *ngIf="showEmojiPicker">
+      <emoji-mart
+        (emojiClick)="addEmoji($event)"
+        [style]="{ position: 'absolute', bottom: '75px', left: '10px' }"
+      ></emoji-mart>
+    </div>
+    <button
+      (click)="toggleEmojiPicker()"
+      mat-icon-button
+      class="text-slate-600"
+    >
+      <mat-icon> insert_emoticon </mat-icon>
+    </button>
+    <button mat-icon-button class="text-slate-600">
+      <mat-icon> add </mat-icon>
+    </button>
+  </div>
+
+  <form class="flex w-full" (submit)="sendMessage()">
+    <textarea
+      name=""
+      id=""
+      class="w-full pl-4 pt-4 outline-none input rounded-lg"
+      placeholder="Type your message here...."
+      type="text"
+      [(ngModel)]="message"
+      id="message"
+      name="message"
+      (focus)="onFocus()"
+      (keydown)="onTextareaKeydown($event)"
+    ></textarea>
+    <button
+      mat-icon-button
+      aria-label="Example icon button with a vertical three dot icon"
+    >
+      <i class="material-icons">send</i>
+    </button>
+  </form>
+</div>

@@ -42,35 +42,9 @@
     </div>
   </section>
 
-  <section class="p-2 bottom_header">
-    <div class="w-full gap-2 flex rounded-lg items-center">
-      <div class="flex">
-        <button mat-icon-button class="text-slate-600">
-          <mat-icon> insert_emoticon </mat-icon>
-        </button>
-        <button mat-icon-button class="text-slate-600">
-          <mat-icon> add </mat-icon>
-        </button>
-      </div>
+  <!-- Todo Sending Message Section -->
 
-      <form class="flex w-full" (submit)="sendMessage()">
-        <input
-          class="w-full pl-4 outline-none input rounded-lg"
-          placeholder="Type your message here...."
-          type="text"
-          [(ngModel)]="message"
-          id="message"
-          name="message"
-        />
-        <button
-          mat-icon-button
-          aria-label="Example icon button with a vertical three dot icon"
-        >
-          <!-- <mat-icon class="text-slate-600">send</mat-icon> -->
-          <i class="material-icons">send</i>
-          <!-- <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon> -->
-        </button>
-      </form>
-    </div>
+  <section class="p-2 bottom_header relative">
+    <app-send-message  [roomSelectedUser]="roomSelectedUser"></app-send-message>
   </section>
 </main>

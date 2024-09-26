@@ -1,20 +1,24 @@
-.m-1{
-      margin: 1 !important;
+.m-1 {
+  margin: 1 !important;
 }
-.receive-message{
-      background-color: #202c33;
-      margin: 0 0 3px !important;
-}
-
-.send-message{
-      background-color: #005c4b;
-      margin: 0 0 3px !important;
+.receive-message {
+  background-color: #202c33;
+  margin: 0 0 3px !important;
 }
 
-.message{
-      max-width: 70%;
+.send-message {
+  background-color: #005c4b;
+  margin: 0 0 3px !important;
 }
 
-.text-small{
-      font-size: 11px;
+.message {
+  max-width: 70%;
+}
+
+.text-small {
+  font-size: 11px;
+}
+
+.formatted-text {
+  white-space: pre-wrap; /* Preserves spaces and line breaks */
 }

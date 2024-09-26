@@ -11,8 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
 import { RelativeTimePipe } from '../relative-time.pipe';
 import { RouterLink } from '@angular/router';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatMenuModule } from '@angular/material/menu';
+import { NotificationService } from '../service/notification.service';
 
 @NgModule({
   declarations: [RelativeTimePipe],
@@ -49,5 +50,6 @@ import {MatMenuModule} from '@angular/material/menu';
     RelativeTimePipe,
     RouterLink,
   ],
+  providers: [NotificationService],
 })
 export class SharedModule {}
